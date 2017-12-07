@@ -290,7 +290,11 @@ function amazonAdvert($choice){
 		   wp_set_post_tags( $ID, $keywords, true );
 		} 
 			
+<<<<<<< HEAD
 			
+=======
+		
+>>>>>>> master
 		function wpse_ad_content($content){
 			if (!is_single()) return $content;
 			$paragraphAfter = 2; //Enter number of paragraphs to display ad after.
