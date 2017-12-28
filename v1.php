@@ -36,22 +36,22 @@ function getSiteDeets($whichDeets) {
 	$blogid = get_current_blog_id();
 	switch ($blogid){
 		case '1':
-		switch ($whichDeets){
-			case '$path':		return '/home/organ151/public_html/tp';		break;
-			case '$user':		return 'theCreator';						break;
-			case '$pass':		return 'Joker999!';							break;
-			case '$addy':		return 'trendypublishing.com';				break;
-			case '$ua':		return 'UA-84079763-11';					break;
-			case '$fbtit':return 'trendypublishing';				break;
-			case '$fbpageid':return '1209167032497461';					break;
-			case '$fbappid':return '867691370038214';		break;
-			case '$hash':return 'TrendyPublishin';					break;
-			case '$twitcnkey' : return ''; break;
-			case '$twitcnsrt' : return ""; break;
-			case '$twitkey': return ""; break;
-			case '$twitscrt':return ""; break;
-		}	
-			case 'default':
+			switch ($whichDeets){
+				case '$path':		return '/home/organ151/public_html/tp';		break;
+				case '$user':		return 'theCreator';						break;
+				case '$pass':		return 'Joker999!';							break;
+				case '$addy':		return 'trendypublishing.com';				break;
+				case '$ua':		return 'UA-84079763-11';					break;
+				case '$fbtit':return 'trendypublishing';				break;
+				case '$fbpageid':return '1209167032497461';					break;
+				case '$fbappid':return '867691370038214';		break;
+				case '$hash':return 'TrendyPublishin';					break;
+				case '$twitcnkey' : return ''; break;
+				case '$twitcnsrt' : return ""; break;
+				case '$twitkey': return ""; break;
+				case '$twitscrt':return ""; break;
+			}	
+			case 'default':		// tpau
 				switch ($whichDeets){
 				case '$path':		return '/home/organ151/public_html/au';	break;
 				case '$user':		return 'theCreator';			break;
@@ -67,7 +67,7 @@ function getSiteDeets($whichDeets) {
 				case '$twitkey': return "817542417788194816-RpuUbfOb3j8hm5v0HRny4XcQ4Ffv0Lq"; break;
 				case '$twitscrt': return "6NL6sJ30NN14L36GiODkA69yvn352hnQtkCtttItGAeI5";break;
 			}	
-		// 'UA-84079763-15
+	
 			case 'orgbizes':
 				switch ($whichDeets){
 				case '$path':		return '/home/organ151/public_html/es';		break;
@@ -89,15 +89,15 @@ function getSiteDeets($whichDeets) {
 				case '$path':			return '/home/organ151/public_html';			break;
 				case '$user':			return 'headlines';			break;
 				case '$pass':			return 'ExtJCJn%jRMzl1(5L5W*JBP#';			break;
-				case '$fbtit': return 'organisemybiz';break;
-				case '$addy':			return 'organisemybiz.com';			break;
-				case '$ua':			return 'UA-84079763-6';			break;
-				case '$fbappId' : return '1209167032497461'; break;
-				case '$fbpageId' : return '259565577769881'; break;
-				case '$twitcnkey' : return '2vOkc55DN1UbX6NJjJawC7UNM'; break;
-				case '$twitcnsrt' : return "tcXIP5xPmXqNRgmiLLBVoEfY1hyKiAaDhhbi4bzrmbB3Urdl6V"; break;
-				case '$twitkey' : return "817542417788194816-RpuUbfOb3j8hm5v0HRny4XcQ4Ffv0Lq"; break;
-				case '$twitscrt' : return "6NL6sJ30NN14L36GiODkA69yvn352hnQtkCtttItGAeI5";break;
+				case '$fbtit': 			return 'organizemybiz';break;
+				case '$addy':			return 'organizemybiz.com';			break;
+				case '$ua':				return 'UA-84079763-6';			break;
+				case '$fbappId' : 		return '1209167032497461'; break;
+				case '$fbpageId' : 		return '259565577769881'; break;
+				case '$twitcnkey':		return 'wTU8Ntmn3q5nN7OrwdXfBn7Xx';break;
+				case '$twitcnsrt':		return 'fqlbIEnIHY4fEBmVoPnqIV7j5JN6doDuh4QLEVLjGmLb59jg9N';break;
+				case '$twitkey': 		return '754663243465891840-FFZjZRlOT84GY0YTvoKugAkMcwW7YeT';break; //access token
+				case '$twitscrt':		return '8mQiNYUIMGiCTqifFEiMJBIIrJkPLvd5ZybFFUdas1hhZ';break;
 				}
 				
 
@@ -155,53 +155,52 @@ function getSiteDeets($whichDeets) {
 					// gov
 					case '6':
 				switch ($whichDeets){
-				case '$path':	return '/home/organ151/public_html/govnews';		break;
-				case '$user':			return 'govfeed'; break;
-				case '$pass':			return '0Q!L!Y34G^$kO8tQuS@INZg0';			break;
-				case '$addy':			return 'govnews.info';			break;
-				case '$ua':			return 'UA-84079763-8';			break;
-				case '$fbappid':		return '392413184462764';			break;
-				case '$fbscrt':		return '06e7300c47ae4a4d1db42f87d0b2e186';			break;
-				case '$fbtit': return 'govnewsinfo';break;
-				case '$fbpageid':		return '1645038759139286';			break;
+					case '$path':	return '/home/organ151/public_html/govnews';		break;
+					case '$user':			return 'govfeed'; break;
+					case '$pass':			return '0Q!L!Y34G^$kO8tQuS@INZg0';			break;
+					case '$addy':			return 'govnews.info';			break;
+					case '$ua':			return 'UA-84079763-8';			break;
+					case '$fbappid':		return '392413184462764';			break;
+					case '$fbscrt':		return '06e7300c47ae4a4d1db42f87d0b2e186';			break;
+					case '$fbtit': return 'govnewsinfo';break;
+					case '$fbpageid':		return '1645038759139286';			break;
 				}
 		// fnr
 			case '5':
 				switch ($whichDeets){
-			case '$path' :  '/home5/organli6/public_html';break;
-			case '$user' : 'theCreator';break;
-			case '$pass' : 'Joker999!';break;
-			case '$addy' : 'fakenewsregistry.org';break;
-				case '$fbappid' : '1883167178608105';break;
-				case '$fbpageId' : '1209167032497461';break;
-				case '$fbscrt' : "5492eaef66ec612e1c443285d223a2e6";break;
+					case '$path' :  '/home5/organli6/public_html';break;
+					case '$user' : 'theCreator';break;
+					case '$pass' : 'Joker999!';break;
+					case '$addy' : 'fakenewsregistry.org';break;
+					case '$fbappid' : '1883167178608105';break;
+					case '$fbpageId' : '1209167032497461';break;
+					case '$fbscrt' : "5492eaef66ec612e1c443285d223a2e6";break;
 					case '$fbtit' : return"newssansfact";break;
 					case '$twitcnkey' : "2vOkc55DN1UbX6NJjJawC7UNM";break;
 					case '$twitcnsrt' : "tcXIP5xPmXqNRgmiLLBVoEfY1hyKiAaDhhbi4bzrmbB3Urdl6V";break;
 					case '$twitkey' : "817542417788194816-RpuUbfOb3j8hm5v0HRny4XcQ4Ffv0Lq";break;
 					case '$twitscrt' : "6NL6sJ30NN14L36GiODkA69yvn352hnQtkCtttItGAeI5";break;
-				case '$gappsTag' : 'UA-84079763-6';
-				break;
+					case '$ua' : 'UA-84079763-6';break;
 				}
 
 				// ckww
 			case '4':
 				switch ($whichDeets){
-		case '$path':		return '/public_html';		break;
+			case '$path':		return '/public_html';		break;
 			case '$user':		return 'customkits';						break;
 			case '$pass':		return 't0mzdez2!';							break;
 			case '$addy':		return 'customkitsworldwide.com';				break;
 			case '$ua':		return 'UA-85225777-1';					break;
-		//	case '$gtm':	return '';									break;
-	//case '$fbpageid':return '';			break;
-	//	case '$fbappid':return '';						break;
-	//case '$fbscrt':return '';break;
+				//	case '$gtm':	return '';									break;
+			//case '$fbpageid':return '';			break;
+			//	case '$fbappid':return '';						break;
+			//case '$fbscrt':return '';break;
 			//case '$hash':return '@';	break;
-		// case '$twitcnkey': return;break;
-		// case '$twitcnsrt': return;break;
-		// case '$twitkey': return;break;
-		// case '$twitscrt': return ;break;
-		// case '$hash':return '';	break;
+			// case '$twitcnkey': return;break;
+			// case '$twitcnsrt': return;break;
+			// case '$twitkey': return;break;
+			// case '$twitscrt': return ;break;
+			// case '$hash':return '';	break;
 	
 		
 	
