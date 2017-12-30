@@ -10,15 +10,15 @@
  * Domain Path: /
  */
 
+add_action( 'init', 't_poster' );	
  
- function t_poster() {
+ 	function t_poster() {
 		$identi = $_POST['wpid'];
-			if ($identi == $GLOBALS['IDENTIFIER']){
 				$username = getSiteDeets('$user');	
 				$password = getSiteDeets('$pass');	
 				$user = wp_authenticate( $username, $password );
-				}	//	$yser = $user=>$ID;
-					// IF THERES A VIDEO ID THEN IT'S A YOUTUBE CLIP...
+				//	$yser = $user=>$ID;
+				// IF THERES A VIDEO ID THEN IT'S A YOUTUBE CLIP...
 				if ( isset( $_POST['videoId'])){
 					$body=$_POST['content'];
 					$pubDate = $_POST['pubDate'];
@@ -26,10 +26,12 @@
 					$title=$_POST['title'];// your post title
 					$likes=$_POST['likes'];
 					$videoId = $_POST['videoId'];
-							$idpost = createYTPost($title,$body,$catAr,$tags);
+					$idpost = createYTPost($title,$body,$catAr,$tags);
 				// ELSE JUST A BLOG POSTING...
-				} else {
-					$body=$_POST['content'];
+				
+			} else {
+			
+				$body=$_POST['content'];
 					$image = $_POST['image'];
 					$source = $_POST['source'];
 					$articleUrl= $_POST['articleUrl'];
@@ -39,7 +41,11 @@
 					$tags = $tags . $hashTags;
 					$category=$_POST['categories'];
 					$cats = explode(" ", $category);
+			
 					$catAr = array();
+			
+			
+			
 					foreach($cats as $car){
 						if (!is_numeric($car)){
 						$caid = get_cat_ID($car);
@@ -103,35 +109,3 @@ function createYTPost($title,$body,$category,$tags,$articleUrl,$source)	{
 			//wp_set_post_categories( $post_id, $category, 'true' );
 	return $post_id;
 	}
- 
- 
-function youtube_search($query, $max_results, $next_page_token=''){
-        $DEVELOPER_KEY = '{AIzaSyCkO1nHHweb4PgqEfah6GBWqFwIiuRrbR8}';
-        $client = new Google_Client();
-        $client->setDeveloperKey($DEVELOPER_KEY);
-        $youtube = new Google_YoutubeService($client);
-        $params = array(
-            'playlistId'=>$query,
-            'maxResults'=>$max_results,
-        );
-            // if next_page_token exist add 'pageToken' to $params
-        if(!empty($next_page_token)){
-            $params['pageToken'] = $next_page_token;
-        }
-        $searchResponse = $youtube->playlistItems->listPlaylistItems('id,snippet,contentDetails', $params);
-        foreach ($searchResponse['items'] as $searchResult) {
-			$videoId = $searchResult['snippet']['resourceId']['videoId'];
-			$videoTitle = $searchResult['snippet']['title'];
-			$source = $searchResult['snippet']['author'];
-			$videoThumb = $searchResult['snippet']['thumbnails']['high']['url'];
-			$videoDesc = $searchResult['snippet']['description'];
-				$body = '<img src="'.$videoThumb.'" alt="'.$videoTitle.'" /><br/> [embedlyt]http://www.youtube.com/watch?v='. $videoId . '[/embedlyt] '.$videoDesc.'<br/>'.$tags.'<br/><a href="/contentfeed">Watch More Here...</a><br/>';
-					$post = createYTPost($videoTitle,$body,$category,$tags,$articleUrl,$source)
-		        }
-          // checking if nextPageToken exist than return our function and 
-          // insert $next_page_token with value inside nextPageToken
-        if(isset($searchResponse['nextPageToken'])){
-              // return to our function and loop again
-            return youtube_search($query, $max_results, $searchResponse['nextPageToken']);
-        }
-    }

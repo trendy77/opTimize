@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: opTimise
+ * Plugin Name: opTimise deprecated
  * Description: older functs
  * Author:      TF
  * Version:     3.0
@@ -10,15 +10,7 @@
  * Domain Path: /
  */
 
-defined( 'ABSPATH' ) or die( 'Uhum!' );
-register_activation_hook( __FILE__, 'oyfff_activate' );
-
- add_action('init', 'removeHeadLinks');	
- add_action( 'wp_footer', 'insertFollowLikes', 100 );
-add_filter( 'post_limits', 'wpcodex_filter_main_search_post_limits', 15, 2 );
-add_theme_support( 'post-thumbnails' );
-
-//add_filter('the_content', 'wpse_ad_content');
+add_action( 'wp_footer', 'insertFollowLikes', 100 );
 
 
 
@@ -167,68 +159,13 @@ function getSiteDeets($whichDeets) {
 	}	
 }
 
- //** enable to add affilate links 2 keywords **//
-		//add_filter('the_content', 'replace_text_wps');
-		//add_filter('the_excerpt', 'replace_text_wps');
-function replace_text_wps($text){
-	$replace = array(
-	// 'WORD TO REPLACE' => 'REPLACE WORD WITH THIS'
-	// football clothing  BRANDS
-		'nike'   =>  '<a href="http://redirect.viglink.com?key=db8e8b461e1b6dcc640b00494a7a95e9&u=http%3A%2F%2Fnike.com">Nike</a>',
-		'adidas' =>  '<a href="http://redirect.viglink.com?key=db8e8b461e1b6dcc640b00494a7a95e9&u=http%3A%2F%2Fadidas.com">Adidas</a>',
-		'adidas' =>  '<a href="http://redirect.viglink.com?key=db8e8b461e1b6dcc640b00494a7a95e9&u=http%3A%2F%2Fpuma.com">Puma</a>',
-		);
-	}
-	
-
 function addSignin(){
 	echo '<div id="login" class="main"><form action="/login" method="post"><div><label>Username:</label>     <input type="text" name="username"/></div><div><label>Password:</label><input type="password" name="password"/></div><div><input type="submit" value="Log In"/>  </div>
 	</form><div class="item1"><div id="gConnect" class="button"><button class="g-signin" data-scope="email" data-clientid="841077041629.apps.googleusercontent.com"	data-callback="onSignInCallback" data-theme="dark" data-cookiepolicy="single_host_origin"></button><div id="response" class="hide"><textarea id="responseContainer" style="width:100%; height:150px"></textarea>
 		</div></div></div><div class="item2"></div></div>';
 	}
 
-	
-  	function saveImage($imgurl){
-		//add time to the current filename
-		$name = basename($imgurl);
-		list($txt, $ext) = explode(".", $name);
-		$name = $txt.time();
-		$name = $name.".".$ext;
-	//check if the files are only image / document
-		if($ext == "jpg" or $ext == "png" or $ext == "gif" or $ext == "doc" or $ext == "docx" or $ext == "pdf"){
-		$upload = file_put_contents($path . "/wp-contents/uploads/".$name,file_get_contents($imgurl));
-		//check success
-		return $upload;
-		}
-	}
-	
-		function uploadAttachImage($image, $postId)		{
-		// $filename should be the path to a file in the upload directory.
-		$filename = $image;
-		// The ID of the post this attachment is for.
-		$parent_post_id = $postId;
-		// Check the type of file. We'll use this as the 'post_mime_type'.
-		$filetype = wp_check_filetype( basename( $filename ), null );
-		// Get the path to the upload directory.
-		$wp_upload_dir = wp_upload_dir();
-		// Prepare an array of post data for the attachment.
-		$attachment = array(
-			'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ), 
-			'post_mime_type' => $filetype['type'],
-			'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
-			'post_content'   => '',
-			'post_status'    => 'inherit'
-		);
-		// Insert the attachment.
-		$attach_id = wp_insert_attachment( $attachment, $filename, $postId );
-		// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
-		require_once( $path.'/wp-admin/includes/image.php' );
-		// Generate the metadata for the attachment, and update the database record.
-		$attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-		wp_update_attachment_metadata( $attach_id, $attach_data );
-		set_post_thumbnail( $postId, $attach_id );
-		return ($attach_id);
-			}
+
 
 		function wpse_ad_content($content){
 			if (!is_single()) return $content;
@@ -257,7 +194,7 @@ function addSignin(){
 			$new_contentT = '';
 			for ($i = 0; $i < count($new_content); $i++) {
 				if ($i == $paragraphAfterT) {
-					$new_contentT.= '<div style="width: 336px; height: 280px; padding: 0px 0px 0px 0; float: right; margin-left: 18px; margin-right: 0;">';
+					$new_contentT.= '<div id="t_advert">';
 					$new_contentT.= '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<!-- tinyhands -->
 		<ins class="adsbygoogle"
@@ -274,43 +211,7 @@ function addSignin(){
 			return $new_contentT;
 		}
 
-		function stay_logged_in_for_1_year( $expire ) {
-		  return 31556926; // 1 year in seconds
-		}
-		//Clean up the </head>
-		function removeHeadLinks(){
-		 // publicize your main RSS feed and remove the other feeds
-		remove_action( 'wp_head', 'feed_links', 2 );
-		remove_action( 'wp_head', 'feed_links_extra', 3 );
-		// disable html in comments
-		add_filter( 'pre_comment_content', 'esc_html' );
-		// remove admin bar'
-		add_filter('show_admin_bar', '__return_false');
-		// STAY LOGGED IN FOR A YEAR
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		add_filter( 'auth_cookie_expiration', 'stay_logged_in_for_1_year' );
-		remove_action('wp_head', 'rsd_link');
-		remove_action('wp_head', 'wlwmanifest_link');
-		remove_action('wp_head', 'wp_generator');
-		}
 
-add_action( 'plugins_loaded', 'oyfff_load_textdomain' );
-add_action( 'rss2_ns', 'oyfff_add_webfeeds_namespace' );
-add_action( 'rss2_head', 'oyfff_add_cover_icon' );
-add_filter( 'the_content_feed', 'oyfff_add_featured_image' );
-add_filter( 'the_excerpt_rss', 'oyfff_add_featured_image' );
-add_action( 'rss2_head', 'oyfff_add_logo_accentcolor' );
-add_action( 'rss2_head', 'oyfff_add_related' );
-add_action( 'rss2_head', 'oyfff_add_google_analytics' );
-add_action( 'admin_menu', 'oyfff_add_admin_menu' );
-add_action( 'admin_init', 'oyfff_settings_init' );
-add_action( 'admin_enqueue_scripts', 'oyfff_wp_admin_scripts' );
-	
-		
-		function oyfff_activate() {
-			register_uninstall_hook( __FILE__, 'oyfff_uninstall' );
-		}
 		
 	function insertFollowLikes(){
 		  echo '<div class="section"> <!--twitter Button-->		<a href="https://twitter.com/'. getSiteDeets('$hash') . '" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Keep up-to-date with the latest Twitter Posts @' . getSiteDeets('$hash') . '</a>
@@ -319,242 +220,3 @@ add_action( 'admin_enqueue_scripts', 'oyfff_wp_admin_scripts' );
 		 <!-- FB like Button--><div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true"></div>
 			</div>';
 			}
-	
-	function oyfff_uninstall() {
-			delete_option( 'oyfff_settings' );
-		}
-		function oyfff_load_textdomain() {
-			load_plugin_textdomain( 'oyfff', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
-		}
-function oyfff_add_webfeeds_namespace() {
-    echo 'xmlns:webfeeds="http://webfeeds.org/rss/1.0"';
-}
-function oyfff_add_cover_icon() {
-    $options = get_option( 'oyfff_settings' );
-    if ( $options['oyfff_cover'] ) {
-        echo sprintf(
-            '<webfeeds:cover image="%s" />',
-            esc_url( $options['oyfff_cover'] )
-        );
-    }
-	else { 
-	echo sprintf( '<webfeeds:cover image="%s" />', esc_url( 'trendypublishing.com/timg/wide.jpg' )
-        );
-     }
-   if ( $options['oyfff_icon'] ) {
-       echo sprintf(
-            '<webfeeds:icon>%s</webfeeds:icon>',
-            esc_url( $options['oyfff_icon'] )
-        );
-    } 
-	else {
-	echo sprintf('<webfeeds:icon>%s</webfeeds:icon>', esc_url( 'trendypublishing.com/favicon.ico' )  );
-	}
-}
-function oyfff_add_featured_image( $content ) {
-   global $post;
-    $options = get_option( 'oyfff_settings' );
-    if ( $options['oyfff_featured_image'] ) {
-        if ( has_post_thumbnail( $post->ID ) ) {
-            $post_thumbnail_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
-            $post_thumbnail = "<figure><img src='$post_thumbnail_url' class='webfeedsFeaturedVisual'></figure>";
-            $content = $post_thumbnail . $content;
-        }
-    }
-    return $content;
-}
-function oyfff_add_logo_accentcolor() {
-    $options = get_option( 'oyfff_settings' );
-    if ( $options['oyfff_logo'] ) {
-        echo sprintf(
-            '<webfeeds:logo>%s</webfeeds:logo>',
-            esc_url( $options['oyfff_logo'] )
-        );
-    }
-    if ( $options['oyfff_accentcolor'] ) {
-        echo sprintf(
-            '<webfeeds:accentColor>%s</webfeeds:accentColor>',
-            esc_html( ltrim( $options['oyfff_accentcolor'], '#' ) )
-        );
-    }
-}
-function oyfff_add_related() { ?>
-    <webfeeds:related layout="card" target="browser"/>
-<?php }
-
-function oyfff_add_google_analytics() {
-    $options = get_option( 'oyfff_settings' );
-    if ( $options['oyfff_google_analytics'] ) {
-       $options['oyfff_google_analytics'] = getSiteDeets('$ua');
-     }
-}
-function oyfff_add_admin_menu() {
-    add_options_page( 'Optimize your Feed Trendy', 'OYFFF', 'manage_options', 'oyfff', 'oyfff_settings' );
-}
-function oyfff_settings_init() {
-    register_setting( 'oyfff_settings', 'oyfff_settings' );
-    $options = get_option( 'oyfff_settings' );
-    add_settings_section(
-        'oyfff_values',
-        null,
-        function() {
-            echo sprintf(
-                '<a target="_blank" href="%s">%s</a>',
-                esc_url( 'https://blog.feedly.com/10-ways-to-optimize-your-feed-for-feedly/' ),
-                esc_html__( 'Read the related article on feedly\'s blog.', 'oyfff' )
-            );
-        },
-        'oyfff_settings'
-    );
-    add_settings_field(
-        'oyfff_cover',
-        __( 'Cover URL', 'oyfff' ),
-        function() use ( $options ) { ?>
-            <p>
-                <input type="url"
-                       class="regular-text"
-                       placeholder="trendypublishing.com/timg/wide.png"
-                       name="oyfff_settings[oyfff_cover]"
-                       value="<?php echo esc_attr( $options['oyfff_cover'] ); ?>">
-            </p>
-            <p>
-                <a class="button button-secondary oyfff-media-select"
-                   href="#"
-                   data-title="<?php esc_attr_e( 'Select your Cover Image', 'oyfff' ); ?>"
-                   data-insert="oyfff_settings[oyfff_cover]">
-                    <?php esc_html_e( 'Select from Media Library', 'oyfff' ); ?>
-                </a> <small><?php esc_html_e( 'or Paste the URL', 'oyfff' ); ?></small>
-            </p>
-        <?php },
-        'oyfff_settings',
-        'oyfff_values'
-    );
-    add_settings_field(
-        'oyfff_icon',
-        __( 'Icon SVG URL', 'oyfff' ),
-        function() use ( $options ) { ?>
-            <p>
-                <input type="url"
-                       class="regular-text"
-                       placeholder="trendypublishing.com/timg/svg/logo.svg"
-                       name="oyfff_settings[oyfff_icon]"
-                       value="<?php echo esc_attr( $options['oyfff_icon'] ); ?>">
-            </p>
-            <p>
-                <a class="button button-secondary oyfff-media-select"
-                   href="#"
-                   data-title="<?php esc_attr_e( 'Select your Icon SVG', 'oyfff' ); ?>"
-                   data-insert="oyfff_settings[oyfff_icon]">
-                    <?php esc_html_e( 'Select from Media Library', 'oyfff' ); ?>
-                </a> <small><?php esc_html_e( 'or Paste the URL', 'oyfff' ); ?></small>
-            </p>
-        <?php },
-        'oyfff_settings',
-        'oyfff_values'
-    );
-    add_settings_field(
-        'oyfff_featured_image',
-        __( 'Featured Image', 'oyfff' ),
-        function() use ( $options ) { ?>
-            <p>
-                <label>
-                    <input type="hidden"
-                           name="oyfff_settings[oyfff_featured_image]"
-                           value="0">
-                    <input type="checkbox"
-                           name="oyfff_settings[oyfff_featured_image]"
-                           value="1"
-                           <?php checked( $options['oyfff_featured_image'], 1 ); ?>>
-                    <?php esc_html_e( 'Insert the featured image before the content', 'oyfff' ); ?>
-                </label>
-            </p>
-        <?php },
-        'oyfff_settings',
-        'oyfff_values'
-    );
-    add_settings_field(
-        'oyfff_logo',
-        __( 'Logo SVG URL', 'oyfff' ),
-        function() use ( $options ) { ?>
-            <p>
-                <input type="url"
-                       class="regular-text"
-                       placeholder="http://yoursite.com/logo-30px-height.svg"
-                       name="oyfff_settings[oyfff_logo]"
-                       value="<?php echo esc_attr( $options['oyfff_logo'] ); ?>">
-            </p>
-            <p>
-                <a class="button button-secondary oyfff-media-select"
-                   href="#"
-                   data-title="<?php esc_attr_e( 'Select your Logo SVG', 'oyfff' ); ?>"
-                   data-insert="oyfff_settings[oyfff_logo]">
-                    <?php esc_html_e( 'Select from Media Library', 'oyfff' ); ?>
-                </a> <small><?php esc_html_e( 'or Paste the URL', 'oyfff' ); ?></small>
-            </p>
-        <?php },
-        'oyfff_settings',
-        'oyfff_values'
-    );
-    add_settings_field(
-        'oyfff_accentcolor',
-        __( 'Accent Color', 'oyfff' ),
-        function() use ( $options ) { ?>
-            <p>
-                <input type="text"
-                       class="regular-text color-picker"
-                       placeholder="00FF00"
-                       name="oyfff_settings[oyfff_accentcolor]"
-                       value="<?php echo esc_attr( $options['oyfff_accentcolor'] ); ?>">
-            </p>
-        <?php },
-        'oyfff_settings',
-        'oyfff_values'
-    );
-    add_settings_field(
-        'oyfff_google_analytics',
-        __( 'Google Analytics UA', 'oyfff' ),
-        function() use ( $options ) { ?>
-            <p>
-                <input type="text"
-                       class="regular-text"
-                       placeholder="UA-84079763-13"
-                       name="oyfff_settings[oyfff_google_analytics]"
-                       value="<?php echo esc_attr( $options['oyfff_google_analytics'] ); ?>">
-            </p>
-            <p class="description">
-                <?php esc_html_e( 'Tracking ID is a string like UA-000000-01.', 'oyfff' ); ?>
-            </p>
-        <?php },
-        'oyfff_settings',
-        'oyfff_values'
-    );
-
-}
-
-function oyfff_settings() { ?>
-    <div class="wrap"><form action="options.php" method="post">
-         <h1><?php esc_html_e( 'Optimize your feed Trendy' ); ?></h1>
-            <?php
-                settings_fields( 'oyfff_settings' );
-                do_settings_sections( 'oyfff_settings' );
-                submit_button();
-            ?>
-        </form>
-    </div>
-<?php }
-
-function oyfff_wp_admin_scripts( $hook_suffix ) {
-    if ( 'settings_page_oyfff' !== $hook_suffix  ) {
-        return;
-    }
-    wp_enqueue_media();
-    wp_enqueue_style( 'wp-color-picker' );
-    wp_enqueue_script( 'optimize-your-feed-for-feedly',
-        plugins_url('optimize-your-feed-for-feedly.js', __FILE__ ),
-        array(
-            'wp-color-picker',
-        ),
-        false,
-        true
-    );
-}
