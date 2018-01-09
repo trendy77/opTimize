@@ -1,20 +1,19 @@
- <?php
+<?php
 /**
- * Plugin Name: opTimise
+ * @package: opTimise
  * Description: plugin entry point
- * Author:      TF
- * Version:     3.0
+ * @author:      TF
+ * @version:     3.0
   * License:     GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: oyfff
  * Domain Path: /
  */
-
 // save-backwards capability with v1
-require_once('v1.php');
+require_once(v1.php);
 
 
-add_action( 'init', 't_poster' );		// changed from v1's 'tpost'
+//add_action( 'init', 't_poster' );		// changed from v1's 'tpost'
 
 
 

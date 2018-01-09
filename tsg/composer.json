@@ -1,0 +1,29 @@
+{
+    "name": "trendy77/siteSet",
+    "description": "WP setup build",
+    "keywords": ["bot", "wordpress", "wp"],
+    "license": "GPL-2.0+",
+    "authors": [{
+        "name": "Trent Fischer",
+        "email": "email@somewhere.com"
+    }],
+    "type": "project",
+    "minimum-stability": "dev",
+    "repositories": [{
+        "type": "composer",
+        "url": "http://wpackagist.org"
+    }],
+    "config": {
+        "vendor-dir": "vendor",
+        "secure-http": false
+    },
+    "require": {
+        "dg/rss-php": "^1.2",
+        "madcoda/php-youtube-api": "^1.2",
+        "silverstripe-rebelalliance/youtubefield": "^1.0",
+        "squizlabs/PHP_CodeSniffer": "^3.0",
+        "wp-coding-standards/wpcs": "^0.13.1",
+        "aylien/textapi": "0.6.*"
+
+    }
+}

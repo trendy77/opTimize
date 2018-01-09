@@ -22,7 +22,12 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php
+<?php
+function my_facebook_comments(){
+	echo '<h2>Submit a Comment</h2>';
+	echo '<div class="fb-comments" data-href="' . get_permalink() . '" data-numposts="5" data-width="100%"></div>';
+}
+
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
 		<h2 class="comments-title">
@@ -66,7 +71,7 @@ if ( post_password_required() ) {
 
 	endif; // Check for have_comments().
 
-	comment_form();
+	
 	?>
 
 </div><!-- #comments -->

@@ -12,14 +12,16 @@
  * Obviously, you'll want to replace the "<api key>" with one provided 
  * by Flickr: http://www.flickr.com/services/api/key.gne
  */
-
-require_once("tsg/phpflickr/phpFlickr.php");
+require_once('../vendor/autoload.php');
+require_once('./phpflickr/phpFlickr.php');
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 $api_key                 = getenv('FLICKR_KEY');
 $api_secret              = getenv('FLICKR_SECRET');
 $f = new phpFlickr($api_key,$api_secret, true);
-
+$recent = $f->photos_getRecent();
+foreach ($recent['photo'] as $photo) {
+    $owner = $f->people_getInfo($photo['owner']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,9 +36,6 @@ $f = new phpFlickr($api_key,$api_secret, true);
 <body>
     
 <?php
-$recent = $f->photos_getRecent();
-foreach ($recent['photo'] as $photo) {
-    $owner = $f->people_getInfo($photo['owner']);
     echo "<a href='http://www.flickr.com/photos/" . $photo['owner'] . "/" . $photo['id'] . "/'>";
     echo $photo['title'];
     echo "</a> Owner: ";
