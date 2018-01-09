@@ -1,0 +1,12 @@
+{
+    "require": {
+        "squizlabs/PHP_CodeSniffer": "^3.0",
+        "wp-coding-standards/wpcs": "^0.13.1",
+        "madcoda/php-youtube-api": "^1.2",
+        "vlucas/phpdotenv": "^2.4",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.0"
+    }
+}

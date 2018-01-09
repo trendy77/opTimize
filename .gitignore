@@ -1,2 +1,4 @@
 secrets.txt
 /SECRETS/*
+fabric8-analytics.log
+.env
